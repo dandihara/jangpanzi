@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang='en' dir="ltr">
+
+<head>
+    <link rel="stylesheet" href="/static/css/index.css">
+</head>
+{%load static%}
+<body>
+    <div entire-wrap>
+        <ul>
+            <li><a class="active" href="/">HOME</a></li>
+            <li><a href="http://localhost:8000/shoes_site/datecom/" target = "_self">발매 소식</a></li>
+            <li><a href="http://localhost:8000/shoes_site/search/" target ='_self'>가격 정보</a></li>
+            <li><a href="http://localhost:8000/shoes_site/howto/" target = "_self">직구 방법</a></li>
+            {% if user.is_authenticated %}
+            <li>
+                <a href="http://localhost:8000/shoes_site/logout/" data-component-loginmodal="" title="로그아웃" data-click-area="Upper GNB"
+                    data-click-name="login" class="logout">로그아웃</a>
+            </li>
+            {% else %}
+            <li>
+                <a href="http://localhost:8000/shoes_site/login/" data-component-loginmodal="" title="로그인" data-click-area="Upper GNB"
+                    data-click-name="login" class="login">로그인</a>
+            </li>
+            <li>
+                <a href="http://localhost:8000/shoes_site/sign_up/" data-uk-modal="{target:'#kakao-sync-modal-register'}" title="회원가입"
+                    data-click-area="Upper GNB" data-click-name="join" class="join">회원가입</a>
+            </li>
+            {% endif %}
+        </ul>
+        <div class = main_place>
+            <div class = img>
+                <a href=""><img src = "/static/demo-images/141414.jpg" class='mainlogo'></a>
+            </div>
+            <div class = search_bar>
+                <form action='#' method="GET" role = "search">
+                    <nav>
+                        <input class = "search-box" type="text" name="keyword" placeholder="Search">
+                    </nav>
+                </form>
+            </div>
+        <div class = big_wraaper>
+                {% if query %}
+                <h1>   RESULT : {{ query }} ({{shoes_info.count}})</h1>
+                {% endif %}
+                <div class=wrapper>
+                    {% for shoe_info in shoes_info %}
+                <div class='product_box'>
+                    <a href='{{shoe_info.link}}'><img src={{shoe_info.model_image}} height="200px" width="240px" class = 'thumbnail'></a>
+                    <div class='product_info'>
+                        <h2>{{shoe_info.title}}</h2>
+                    </div>
+                    <div class='product_price'>
+                        <h4>가격 : {{shoe_info.price}}won</h4>
+                    </div>
+                    <div class = 'product_price'>
+                            <h4>브랜드 : {{shoe_info.brand}}</h4>
+                    </div>
+                    <div class='product_price'>
+                        <h4>판매처 : {{shoe_info.search_site}}</h4>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</body>
+</html>

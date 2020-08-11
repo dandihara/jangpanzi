@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <title>
+    </title>
+    <link rel='stylesheet' href="/static/css/login.css">
+    <scrpit src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" charset="utf-8"></scrpit>
+
+</head>
+
+<body>
+    <form method="POST" action="" class='login-form'>
+        <h1>Sign Up</h1>
+        {% csrf_token %}
+        <div class="txtb">
+            <h4>E-mail</h4>
+            <input type='text' name='id' pattern="\s\@\s\" title="이메일 형식으로 기입해 주세요" />
+        </div>
+
+        <div class="txtb">
+            <h4>비밀번호</h4>
+            <input type='password' name='pw'>
+        </div>
+
+        <div class="txtb">
+            <h4>비밀번호 확인</h4>
+            <input type='password' name='pw_confirm'>
+        </div>
+
+        <div class="txtb">
+            <h4>선호브랜드(ex) 아디다스,나이키,컨버스)</h4>
+            <input type='text' name='user_keyword'>
+        </div>
+
+        <input type="submit" class="Joinbtn" value="Join">
+
+    </form>
+
+    <script type="text/javascript">
+        $(".txtb input").on("focus", function () {
+            $(this).addClass("focus");
+        });
+
+        $(".txtb input").on("blur", function () {
+            if ($(this).val() == "")
+                $(this).addClass("focus");
+        });
+    </script>
+</body>
+
+</html>

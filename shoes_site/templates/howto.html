@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang='en' dir="ltr">
+
+<head>
+    <link rel="stylesheet" href="/static/css/index.css">
+    <style>
+        .sub_img{ text-align:center;
+        margin-top: 50px;}
+        .article_space{
+            width: 600px;
+            height:1100px;
+            margin-top : 100px;
+            background-color : #bbb;
+        }
+    </style>
+</head>
+{%load static%}
+<body>
+    <div entire-wrap>
+        <ul>
+            <li><a class="active" href="/">HOME</a></li>
+            <li><a href="http://localhost:8000/shoes_site/datecom/" target = "_self">발매 소식</a></li>
+            <li><a href="http://localhost:8000/shoes_site/search/" target ='_self'>가격 정보</a></li>
+            <li><a href="http://localhost:8000/shoes_site/howto/" target = "_self">직구 방법</a></li>
+            {% if user.is_authenticated %}
+            <li>
+                <a href="http://localhost:8000/shoes_site/logout/" data-component-loginmodal="" title="로그아웃" data-click-area="Upper GNB"
+                    data-click-name="login" class="logout">로그아웃</a>
+            </li>
+            {% else %}
+            <li>
+                <a href="http://localhost:8000/shoes_site/login/" data-component-loginmodal="" title="로그인" data-click-area="Upper GNB"
+                    data-click-name="login" class="login">로그인</a>
+            </li>
+            <li>
+                <a href="http://localhost:8000/shoes_site/sign_up/" data-uk-modal="{target:'#kakao-sync-modal-register'}" title="회원가입"
+                    data-click-area="Upper GNB" data-click-name="join" class="join">회원가입</a>
+            </li>
+            {% endif %}
+        </ul>
+        <div class = main_place>
+            <div class = aritcle_space>
+                <div class = sub_img>
+                    <img src = "/static/demo-images/howto1.png" class = 'sub_picture' width="900px" height="600px">
+                </div>
+                <div class = text_space>
+                   <h2> 1. 신발을 사고자 하는 사이트에 회원가입</h2>
+                </div>
+            </div>
+            <div class = aritcle_space>
+                <div class = sub_img>
+                    <img src = "/static/demo-images/howto3.png" class = 'sub_picture' width="900px" height="600px">
+                </div>
+                <div class = text_space>
+                    <h2> 2. 구매할 신발을 장바구니에 담고 checkout버튼을 누른다.</h2>
+                </div>
+            </div>
+            <div class = aritcle_space>
+                <div class = sub_img>
+                    <img src = "/static/demo-images/howto5-1.png" class = 'sub_picture' width="900px" height="600px">
+                </div>
+                <div class = text_space>
+                    <h2> 3. 배송대행지 사이트로 접속하여 회원가입 </h2>
+                </div>
+            </div>
+            <div class = aritcle_space>
+                <div class = sub_img>
+                    <img src = "/static/demo-images/howto5-2.png" class = 'sub_picture' width="900px" height="600px">
+                </div>
+                <div class = text_space>
+                    <h2> 4. 회원가입 후, 배송대행지 주소를 가져온다. 지역마다 세금이 상이함
+                        (오레곤을 가장 추천함. 면세지역)
+                    </h2>
+                </div>
+            </div>
+            <div class = aritcle_space>
+                <div class = sub_img>
+                    <img src = "/static/demo-images/howto5.png" class = 'sub_picture' width="900px" height="600px">
+                </div>
+                <div class = text_space>
+                    <h2> 5. 배송대행지 주소를 칸 이름에 맞게 옮겨 적어 저장한다.</h2>
+                </div>
+            </div>
+            <div class = aritcle_space>
+                <div class = sub_img>
+                    <img src = "/static/demo-images/howto6.png" class = 'sub_picture' width="900px" height="600px">
+                </div>
+                <div class = text_space>
+                    <h2> 6. 기입한 주소 정보를 확인하고 원하는 배달방식을 선택 뒤 continue 누르기</h2>
+                </div>
+            </div>
+            <div class = aritcle_space>
+                <div class = sub_img>
+                    <img src = "/static/demo-images/howto7.png" class = 'sub_picture' width="900px" height="600px">
+                </div>
+                <div class = text_space>
+                    <h2> 7. 다음 카드 정보(비자/마스터 카드만 가능)를 기입하고 주문버튼를 누르면 사이트에서의 주문은 완료.</h2>
+                </div>
+            </div>
+            <div class = aritcle_space>
+                <div class = sub_img>
+                    <img src = "/static/demo-images/신청서2.png" class = 'sub_picture' width="900px" height="600px">
+                </div>
+                <div class = text_space>
+                    <h2> 8. 전에 가입한 배송대행지 사이트로 접속. 배송대행 신청서를 제작한다.</h2>
+                </div>
+            </div>
+            <div class = aritcle_space>
+                <div class = sub_img>
+                    <img src = "/static/demo-images/신청서.png" class = 'sub_picture' width="900px" height="600px">
+                </div>
+                <div class = text_space>
+                    <h2> 9. 다음과 같이 제작한 신청서를 제출하고 배송대행지에 제품이 도착 할 때까지 기다린다.</h2>
+                </div>
+            </div>
+            <div class = aritcle_space>
+                <div class = sub_img>
+                    <img src = "/static/demo-images/신청서3.png" class = 'sub_picture' width="900px" height="600px">
+                </div>
+                <div class = text_space>
+                    <h2> 10. 물품이 도착했다면 다음과 같이 배송료를 청구받는다.
+                            청구받은 배송료는 30일 내로 결제해야한다.</h2>
+                </div>
+            </div>
+            <div class = aritcle_space>
+                <div class = sub_img>
+                    <img src = "/static/demo-images/신청서4.png" class = 'sub_picture' width="900px" height="600px">
+                </div>
+                <div class = text_space>
+                    <h2> 11. 배송비를 결제하고 물품을 보낼 배송지를 입력하면 적힌 배송지로 물품이 배달된다.</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

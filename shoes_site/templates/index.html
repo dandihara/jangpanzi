@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang='en' dir="ltr">
+
+<head>
+    <link rel="stylesheet" href="/static/css/index.css?after">
+</head>
+{% load static %}
+<body>
+    <style>
+        .btn-bookmark{
+        display : inline-block;
+        width : 36px;
+        height : 35px;
+        background:url('/static/demo-images/instar.png');
+        background-position: -744px -398px;
+        text-indent:  -9999px;
+        overflow: hidden;
+        border : none;
+        }
+        .btn-bookmark-fulled{
+            display : inline-block;
+            width : 36px;
+            height : 35px;
+            background:url('/static/demo-images/instar.png');
+            background-position: -572px -398px;
+            text-indent:  -9999px;
+            overflow: hidden;
+            border : none;
+        }
+            </style>
+    <div class = entire-wrap>
+        <ul>
+            <li><a class="active" href="">HOME</a></li>
+            <li><a href="http://localhost:8000/shoes_site/datecom/" target = "_self">발매 소식</a></li>
+            <li><a href="http://localhost:8000/shoes_site/search/" target ='_self'>가격 정보</a></li>
+            <li><a href="http://localhost:8000/shoes_site/howto/" target = "_self">직구 방법</a></li>
+            {% if user.is_authenticated %}
+            <li>
+                <a href="http://localhost:8000/shoes_site/logout/" data-component-loginmodal="" title="로그아웃" data-click-area="Upper GNB"
+                    data-click-name="login" class="logout">로그아웃</a>
+            </li>
+            {% else %}
+            <li>
+                <a href="http://localhost:8000/shoes_site/login/" data-component-loginmodal="" title="로그인" data-click-area="Upper GNB"
+                    data-click-name="login" class="login">로그인</a>
+            </li>
+            <li>
+                <a href="http://localhost:8000/shoes_site/sign_up/" data-uk-modal="{target:'#kakao-sync-modal-register'}" title="회원가입"
+                    data-click-area="Upper GNB" data-click-name="join" class="join">회원가입</a>
+            </li>
+            {% endif %}
+        </ul>
+        <div class = main_place>
+            <div class = img>
+                <img src = "/static/demo-images/141414.jpg" class='mainlogo'>
+            </div>
+        <div class = big_wraaper>
+            {% if user.is_authenticated %}
+            <div class = text_space>
+                <h1> BOOKMARK </h1>
+            </div>
+            <div class = wrapper>
+                {% for bookmark in bookmark_list %}
+                <div class = 'product_box_datecom'>
+                    <a href='{{bookmark.link}}'><img src={{bookmark.model_image}} height="200px" width="240px"></a>
+                    <div class='product_info'>
+                        <h3>{{bookmark.title}}</h3>
+                    </div>
+                    {% if bookmark.price != '0' %}
+                        {% if bookmark.search_site != 'Kasina' %}
+                        <div class='product_price'>
+                            <h4>가격 : {{bookmark.price}}won</h4>
+                        </div>
+                        {% else %}
+                        <div class='product_price'>
+                            <h4>가격 : {{bookmark.price}}</h4>
+                        </div>
+                        {% endif %}
+                    {% endif %}
+                    {% if bookmark.date != None %}
+                    <div class='product_price'>
+                        <h4>발매예정일 : {{bookmark.date}}</h4>
+                    </div>
+                    {% endif %}
+                    <div class='product_price'>
+                        <h4>발매사이트 : {{bookmark.search_site}}</h4>
+                    </div>
+                    <div class= 'bookmark'>
+                        {% if user in bookmark.bookmark.all %}
+                            <a href="{% url 'bookmark' bookmark.id %}" class = "float-right btn-bookmark-fulled"></a>
+                        {% else %}
+                            <a href="{% url 'bookmark' bookmark.id %}" class = "float-right btn-bookmark"></a>
+                        {% endif %}
+                    </div>              
+                </div>
+            {% endfor %}
+            {% endif %}
+        </div>
+            <div class = text_space>
+                <h1><b>  UPCOMING & RAFFLE  </b></h1>
+            </div>
+            <div class = wrapper>
+                {% for datecom_shoe in datecom_shoes %}
+                <div class = 'product_box_datecom'>
+                    <a href='{{datecom_shoe.link}}'><img src={{datecom_shoe.model_image}} height="200px" width="240px"></a>
+                    <div class='product_info'>
+                        <h3>{{datecom_shoe.title}}</h3>
+                    </div>
+                    {% if datecom_shoe.price != '0' %}
+                    <div class='product_price'>
+                        <h4>가격 : {{datecom_shoe.price}}won</h4>
+                    </div>
+                    {% endif %}
+                    {% if datecom_shoe.date != None %}
+                    <div class='product_price'>
+                        <h4>발매일 : {{datecom_shoe.date}}</h4>
+                    </div>
+                    {% endif %}
+                    <div class='product_price'>
+                        <h4>발매사이트 : {{datecom_shoe.search_site}}</h4>
+                    </div>
+                    {% if user.is_authenticated %}
+                    <div class= 'bookmark'>
+                        {% if user in datecom_shoe.bookmark.all %}
+                            <a href="{% url 'bookmark' datecom_shoe.id %}" class = "float-right btn-bookmark-fulled"></a>
+                        {% else %}
+                            <a href="{% url 'bookmark' datecom_shoe.id %}" class = "float-right btn-bookmark"></a>
+                        {% endif %}
+                    </div>
+                    {% endif %}
+                </div>
+            {% endfor %}
+            </div>
+        {% if user.is_authenticated %}
+        <div class = text_space>
+            <h1> TODAY'S RECOMMDATION </h1>
+        </div>
+        {% else %}
+        <div class = text_space>
+            <h1> HOT ITEM </h1>
+        </div>
+        {% endif %}
+            <div class = wrapper>
+            {% for shoe_info in shoes_info %}
+            <div class = product_box>
+                <a href='{{shoe_info.link}}'><img src={{shoe_info.model_image}} height="200px" width="240px"></a>
+                <div class=product_info>
+                    <h2>{{shoe_info.title}}</h2>
+                </div>
+                <div class = product_price>
+                    <h4>브랜드: {{shoe_info.brand}}</h4>
+                </div>
+                <div class=product_price>
+                    <h4>가격 : {{shoe_info.price}}won</h4>
+                </div>
+                <div class=product_price>
+                    <h4>판매처 : {{shoe_info.search_site}}</h4>
+                </div>
+            </div>
+            {% endfor %}
+            </div>
+        </div>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,5 +1,13 @@
 # jangpanzi
 
-위 사이트는 신발의 가격정보를 얻어와 비교 할 수 있게 만들어 본 사이트이다. 전체적인 프로젝트는 django로 구성되어있으며, 화면은 html&css로 구성지었다.
+- 신발 가격 정보 사이트
 
-This site is comparing cost of sneakers. Structure is made by django, and frontend is made by html&css.
+- 백엔드 : Django(python)
+
+- 프론트엔드 : html / css
+
+- DB : mysql
+
+- 로그인 기능 / 검색 기능 구현
+
+- 로그인 유뮤에 따른 화면 변경점 구현

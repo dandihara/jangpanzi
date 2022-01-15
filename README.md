@@ -14,3 +14,19 @@
 
 - DB : mysql
 
+# url
+
+ - / [GET] : 로그인 여부에 따른 메인 페이지 이동  
+ - login [GET] : 로그인 화면이동
+         [POST] : 로그인 요청
+ - logout [GET] : 로그아웃 기능
+ - sign_up [GET] : 회원가입 화면이동
+           [POST] : 회원가입 요청
+ - search [GET] : 검색 결과 출력
+ - datecom [GET] : 한정판 응모 페이지 이동
+ - howto [GET] : 사이트 이용방법 페이지 이동
+ - bookmard<int:id> [GET] : 신발 위시리스트 추가
+
+# ERD MODEL
+
+![캡처](https://user-images.githubusercontent.com/23503161/149621629-5d7b8b98-03b6-42c7-9444-727bf67f5e55.PNG)

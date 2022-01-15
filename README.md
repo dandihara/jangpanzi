@@ -25,7 +25,7 @@
  - search [GET] : 검색 결과 출력
  - datecom [GET] : 한정판 응모 페이지 이동
  - howto [GET] : 사이트 이용방법 페이지 이동
- - bookmard<int:id> [GET] : 신발 위시리스트 추가
+ - bookmark /<int:id> [GET] : 신발 위시리스트 추가
 
 # ERD MODEL
 
